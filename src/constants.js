@@ -5,7 +5,7 @@ export const tickets = [
         "to": "Ankara",
         "toLBL": "ANK",
         "time": "1h 30m",
-        "brand": "THY",
+        "brand": "Turkish Airlines",
         "departureTime": "12:20",
         "landingTime": "14:00",
         "price": "₺180.00"
@@ -93,7 +93,7 @@ export const tickets = [
         "to": "Ankara",
         "toLBL": "ANK",
         "time": "1h 30m",
-        "brand": "THY",
+        "brand": "Turkish Airlines",
         "departureTime": "12:20",
         "landingTime": "14:00",
         "price": "₺180.00"

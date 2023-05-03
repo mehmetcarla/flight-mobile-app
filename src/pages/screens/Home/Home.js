@@ -5,7 +5,7 @@ import SearchComponent from '../../../components/SearchComponent'
 import Flights from '../../../components/Flights'
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
 
     const handleRouteProfile = () => {
         navigation.navigate('Profile')
@@ -23,9 +23,6 @@ export default function Home({navigation}) {
                     </TouchableOpacity>
                 </SafeAreaView>
                 <SearchComponent />
-                <View style={styles.flights}>
-                    <Flights />
-                </View>
             </ImageBackground>
         </View>
     )

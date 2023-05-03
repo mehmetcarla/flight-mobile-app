@@ -11,6 +11,7 @@ export default function DatePickerModal({ departure }) {
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
+        setDate(currentDate);
         const time = currentDate.toLocaleTimeString('tr-TR', {
             day: 'numeric',
             month: 'numeric',
@@ -31,15 +32,38 @@ export default function DatePickerModal({ departure }) {
     }
 
     const handleConfirm = (date) => {
-        setSelectedDate(date);
-        setDatePickerVisibility(false);
-    };
+        const time = date.toLocaleTimeString('tr-TR', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        if (departure) {
+            dispatch(departureChange(time))
+        } else {
+            dispatch(returnTimeChange(time))
+        }
+        dispatch(dateTimePickerModal())
+    }
 
     return (
         <View style={styles.container}>
             <Modal visible={true} transparent={true} animationType="fade">
                 <TouchableOpacity style={styles.modalBackground} onPress={handleClose}>
                     <View style={styles.modalContainer}>
+                        <View style={styles.topBtnContainer}>
+                            <TouchableOpacity onPress={handleClose} style={styles.btnStyle}>
+                                <Text style={styles.btnText}>
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => handleConfirm(date)} style={styles.btnStyle}>
+                                <Text style={styles.btnText}>
+                                    Confirm
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                         <DateTimePicker
                             testID="dateTimePicker"
                             value={date}
@@ -77,9 +101,9 @@ const styles = StyleSheet.create({
     },
     modalContainer: {
         backgroundColor: '#111',
-        padding: 30,
-        width:'100%',
-        position:'absolute',
+        padding: 40,
+        width: '100%',
+        position: 'absolute',
         bottom: 0,
         paddingBottom: 50,
         justifyContent: 'center',
@@ -92,4 +116,22 @@ const styles = StyleSheet.create({
         shadowOpacity: .35,
         shadowRadius: 20.5,
     },
+    topBtnContainer: {
+        flexDirection: 'row',
+        position: 'absolute',
+        top: 8,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '110%',
+    },
+    btnStyle: {
+        paddingHorizontal: 8,
+        paddingVertical: 8,
+        borderRadius: 6
+    },
+    btnText: {
+        fontSize: 18,
+        fontWeight: 600,
+        color: '#3B99FF'
+    }
 });

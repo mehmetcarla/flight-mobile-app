@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { Login, Sign, ForgotPassword } from "../pages/Register";
 import { auth } from '../../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Stack = createStackNavigator();
 
@@ -26,7 +26,7 @@ export default function MainRoute() {
     const getStarted = useSelector(state => state.Started)
     const isAuth = useSelector(state => state.Auth)
 
-    //if (appAuth) {
+    if (appAuth) {
         return (
             <NavigationContainer>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -34,9 +34,9 @@ export default function MainRoute() {
                 </Stack.Navigator>
             </NavigationContainer>
         )
-    //}
+    }
 
-    /*return (
+    return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 {!getStarted && <Stack.Screen name="GetStarted" component={GetStarted} />}
@@ -50,5 +50,5 @@ export default function MainRoute() {
                 <Stack.Screen name="Main" component={Main} />
             </Stack.Navigator>
         </NavigationContainer>
-    );*/
+    );
 }

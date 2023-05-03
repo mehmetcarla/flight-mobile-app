@@ -42,7 +42,6 @@ export default function SearchComponent() {
 
     const searchData = getCompatibleTicket(data)
 
-    console.log('search data: ', searchData)
 
     const handleSearch = () => {
         if (from && to) {
@@ -50,7 +49,7 @@ export default function SearchComponent() {
             navigation.navigate('Search Details', { "data": searchData })
             setTimeout(() => {
                 setLoading(false)
-            }, 3000)
+            }, 1200)
         }
     }
 
